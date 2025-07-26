@@ -9,7 +9,7 @@ const ResumeSection: FC<PropsWithChildren<{title: string}>> = memo(({title, chil
           <span className="absolute inset-x-0 -bottom-1 border-b-2 border-orange-400" />
         </div>
       </div>
-      <div className="col-span-1 flex flex-col md:col-span-5">{children}</div>
+      <div className="col-span-1 flex flex-col md:col-span-5" style={{ margin: '0', padding: '0' }}>{children}</div>
     </div>
   );
 });
