@@ -14,7 +14,7 @@
     "vercel-build": "yarn compile && yarn next build"
   },
   "dependencies": {
-    "@headlessui/react": "^1.5.0",
+    "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^1.0.6",
     "autoprefixer": "^10.4.2",
     "classnames": "^2.3.1",

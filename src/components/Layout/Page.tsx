@@ -1,11 +1,12 @@
 import {NextPage} from 'next';
 import Head from 'next/head';
 import {useRouter} from 'next/router';
-import {memo} from 'react';
+import {memo, ReactNode} from 'react';
 
 interface PageProps {
   title: string;
   description: string;
+  children?: ReactNode;
 }
 
 const Page: NextPage<PageProps> = memo(({children, title, description}) => {
