@@ -25,7 +25,6 @@ const nextConfig = {
     plugins: ['removeDimensions'],
   },
   strictMode: true,
-  swcMinify: false,
   trailingSlash: false,
   images: {
     unoptimized: true,
@@ -50,7 +49,6 @@ module.exports = {
   },
   // eslint-disable-next-line no-undef
   strictMode: true,
-  swcMinify: false,
   trailingSlash: false,
   images: {
     unoptimized: true,
