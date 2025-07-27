@@ -1,26 +1,8 @@
-import {
-  AcademicCapIcon,
-  CalendarIcon,
-  DownloadIcon,
-  FlagIcon,
-  MapIcon,
-  OfficeBuildingIcon,
-  SparklesIcon,
-} from '@heroicons/react/outline';
+import {DownloadIcon} from '@heroicons/react/outline';
 import Image from 'next/image';
 
 import GithubIcon from '../components/Icon/GithubIcon';
-import InstagramIcon from '../components/Icon/InstagramIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
-import StackOverflowIcon from '../components/Icon/StackOverflowIcon';
-import TwitterIcon from '../components/Icon/TwitterIcon';
-
-import heroImage from '../images/header-background.jpg';
-import profilepic from '../images/profilepic.jpg';
-import testimonialImage from '../images/testimonial.webp';
-import protocolGatewayImage from '../images/protocol_gateway.png';
-import mediaConverterImage from '../images/media_converter.png';
-import mgateUseCaseImage from '../images/mgate_use_case.jpg';
 import {
   About,
   ContactSection,
@@ -68,16 +50,13 @@ export type SectionId = typeof SectionId[keyof typeof SectionId];
  * Hero section
  */
 export const heroData: Hero = {
-  imageSrc: heroImage,
+  imageSrc: '/images/header-background.jpg',
   name: `Po(Eric) Peng`,
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-      <strong>MS ECE @UW Seattle</strong> | <strong>ex-Embedded SWE @MOXA</strong> | 
-      Seeking 2026 Summer Internship
-        
+        <strong>MS ECE @UW Seattle</strong> | <strong>ex-Embedded SWE @MOXA</strong> | Seeking 2026 Summer Internship
       </p>
-      
     </>
   ),
   actions: [
@@ -99,7 +78,7 @@ export const heroData: Hero = {
  * About section
  */
 export const aboutData: About = {
-  profileImageSrc: profilepic,
+  profileImageSrc: '/images/profilepic.jpg',
   description: `MS ECE @UW Seattle | ex-Embedded SWE @MOXA | Seeking 2026 Summer Internship`,
   aboutItems: [],
 };
@@ -220,81 +199,175 @@ export const experience: TimelineItem[] = [
     location: 'Moxa',
     title: 'Embedded Software Engineer',
     content: (
-      <div style={{ margin: '0', padding: '0', width: '100%' }}>
-        <div style={{ marginLeft: '-76px', width: '100%' }}>
-          <div style={{ display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px' }}>
-            <div style={{ flex: '0 0 auto' }}>
-              <p style={{ margin: '0', padding: '0', textAlign: 'left', width: '100%' }}><strong>Protocol Gateways (Linux-based)</strong></p>
+      <div style={{margin: '0', padding: '0', width: '100%'}}>
+        <div style={{marginLeft: '-76px', width: '100%'}}>
+          <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
+            <div style={{flex: '0 0 auto'}}>
+              <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%'}}>
+                <strong>Protocol Gateways (Linux-based)</strong>
+              </p>
             </div>
-            <div style={{ flex: '0 0 auto' }}>
-              <div className="relative group">
-                <Image 
-                  src={protocolGatewayImage} 
-                  alt="Protocol Gateway" 
-                  width={200}
+            <div style={{flex: '0 0 auto'}}>
+              <div className="group relative">
+                <Image
+                  alt="Protocol Gateway"
+                  className="protocol-gateway-image transition-transform duration-300 group-hover:scale-110"
                   height={150}
-                  style={{ 
+                  src="/images/protocol_gateway.png"
+                  style={{
                     borderRadius: '8px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                    cursor: 'pointer'
-                  }} 
-                  className="protocol-gateway-image transition-transform duration-300 group-hover:scale-110"
+                    cursor: 'pointer',
+                  }}
+                  width={200}
                 />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 rounded-lg cursor-pointer select-none">
-                  <span className="text-white font-bold text-lg select-none">Use Case</span>
+                <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="select-none text-lg font-bold text-white">Use Case</span>
                 </div>
               </div>
             </div>
           </div>
-          <ul style={{ listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%' }}>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Pioneered modularization of the IEC 60870-5-101/104 communication protocol for MGate 5192, achieving its first modularized implementation and accelerating feature integration and scalability across future products</span>
+          <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%'}}>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Pioneered modularization of the IEC 60870-5-101/104 communication protocol for MGate 5192, achieving its
+                first modularized implementation and accelerating feature integration and scalability across future
+                products
+              </span>
             </li>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Customized a full-stack solution for the proprietary serial settings and troubleshooting pages of MGate 5216, successfully addressing client-specific needs and driving product adoption</span>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Customized a full-stack solution for the proprietary serial settings and troubleshooting pages of MGate
+                5216, successfully addressing client-specific needs and driving product adoption
+              </span>
             </li>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Improved a RESTful library for the MGate 5000 series by adopting an inter-process communication-based architecture, reducing maintenance and development efforts for REST API-related modules</span>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Improved a RESTful library for the MGate 5000 series by adopting an inter-process communication-based
+                architecture, reducing maintenance and development efforts for REST API-related modules
+              </span>
             </li>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Developed unit tests and Valgrind scripts for MGate 5000 series software modules integrated with GitLab CI, enhancing system stability and supporting a product line generating USD 3M/year (+10% YoY over 3 years)</span>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Developed unit tests and Valgrind scripts for MGate 5000 series software modules integrated with GitLab
+                CI, enhancing system stability and supporting a product line generating USD 3M/year (+10% YoY over 3
+                years)
+              </span>
             </li>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Resolved SD card backup issues by analyzing Linux kernel code and confirming a solution in a new version</span>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Resolved SD card backup issues by analyzing Linux kernel code and confirming a solution in a new version
+              </span>
             </li>
           </ul>
         </div>
-        <div style={{ marginLeft: '-76px', width: '100%' }}>
-          <div style={{ display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px' }}>
-            <div style={{ flex: '0 0 auto' }}>
-              <p style={{ margin: '0', padding: '0', textAlign: 'left', width: '100%' }}><strong>Media Converters (MCU-based):</strong></p>
+        <div style={{marginLeft: '-76px', width: '100%'}}>
+          <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
+            <div style={{flex: '0 0 auto'}}>
+              <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%'}}>
+                <strong>Media Converters (MCU-based):</strong>
+              </p>
             </div>
-            <div style={{ flex: '0 0 auto' }}>
-              <Image 
-                src={mediaConverterImage} 
-                alt="Media Converter" 
-                width={200}
+            <div style={{flex: '0 0 auto'}}>
+              <Image
+                alt="Media Converter"
                 height={150}
-                style={{ 
+                src="/images/media_converter.png"
+                style={{
                   borderRadius: '8px',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
-                }} 
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                }}
+                width={200}
               />
             </div>
           </div>
-          <ul style={{ listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%' }}>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Led the software development of IMC-P21A-G2 (Ethernet-to-fiber) from project initiation to market launch</span>
+          <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%'}}>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Led the software development of IMC-P21A-G2 (Ethernet-to-fiber) from project initiation to market launch
+              </span>
             </li>
-            <li style={{ marginBottom: '16px', paddingLeft: '24px', position: 'relative' }}>
-              <span style={{ color: '#F97316', fontSize: '6px', position: 'absolute', left: '0', top: '8px', fontWeight: 'bold' }}>●</span>
-              <span style={{ textAlign: 'justify', display: 'block', width: '100%' }}>Resolved sample point and communication issues for Japanese clients using ICF-1171I (CAN-to-fiber)</span>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                Resolved sample point and communication issues for Japanese clients using ICF-1171I (CAN-to-fiber)
+              </span>
             </li>
           </ul>
         </div>
@@ -307,7 +380,7 @@ export const experience: TimelineItem[] = [
  * Testimonial section
  */
 export const testimonial: TestimonialSection = {
-  imageSrc: testimonialImage,
+  imageSrc: '/images/testimonial.webp',
   testimonials: [
     {
       name: 'John Doe',

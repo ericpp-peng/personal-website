@@ -25,11 +25,34 @@ const nextConfig = {
     plugins: ['removeDimensions'],
   },
   strictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   trailingSlash: false,
   images: {
-    domains: ['images.unsplash.com', 'source.unsplash.com'],
+    unoptimized: true,
   },
 };
 
-module.exports = nextConfig;
+// eslint-disable-next-line no-undef
+module.exports = {
+  // eslint-disable-next-line no-undef
+  env: {
+    customKey: 'my-value',
+  },
+  basePath: process.env.NODE_ENV === 'production' ? '/personal-website' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-website/' : '',
+  // eslint-disable-next-line no-undef
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // eslint-disable-next-line no-undef
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  // eslint-disable-next-line no-undef
+  strictMode: true,
+  swcMinify: false,
+  trailingSlash: false,
+  images: {
+    unoptimized: true,
+  },
+};

@@ -1,7 +1,7 @@
 import {Dialog, Transition} from '@headlessui/react';
 import {XIcon} from '@heroicons/react/outline';
-import {FC, Fragment, memo} from 'react';
 import Image from 'next/image';
+import {FC, Fragment, memo, useMemo} from 'react';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -11,8 +11,10 @@ interface ImageModalProps {
 }
 
 const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) => {
+  const imageStyle = useMemo(() => ({objectFit: 'contain' as const}), []);
+
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear as={Fragment} show={isOpen}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
         <Transition.Child
           as={Fragment}
@@ -21,8 +23,7 @@ const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) 
           enterTo="opacity-100"
           leave="ease-in duration-200"
           leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
+          leaveTo="opacity-0">
           <div className="fixed inset-0 bg-black bg-opacity-75" />
         </Transition.Child>
 
@@ -35,25 +36,23 @@ const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) 
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
+              leaveTo="opacity-0 scale-95">
               <Dialog.Panel className="relative w-full max-w-4xl transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div className="absolute top-4 right-4">
                   <button
-                    onClick={onClose}
                     className="rounded-full bg-gray-800 p-2 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  >
+                    onClick={onClose}>
                     <XIcon className="h-6 w-6" />
                   </button>
                 </div>
                 <div className="mt-4">
                   <Image
-                    src={imageSrc}
                     alt={alt}
-                    width={800}
+                    className="h-auto w-full rounded-lg"
                     height={600}
-                    className="w-full h-auto rounded-lg"
-                    style={{objectFit: 'contain'}}
+                    src={imageSrc}
+                    style={imageStyle}
+                    width={800}
                   />
                 </div>
               </Dialog.Panel>
@@ -66,4 +65,4 @@ const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) 
 });
 
 ImageModal.displayName = 'ImageModal';
-export default ImageModal; 
+export default ImageModal;

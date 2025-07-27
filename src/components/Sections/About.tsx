@@ -1,38 +1,39 @@
-import classNames from 'classnames';
+import {DownloadIcon} from '@heroicons/react/outline';
 import Image from 'next/image';
 import {FC, memo, useState} from 'react';
-import {DownloadIcon} from '@heroicons/react/outline';
 
 import {aboutData, SectionId} from '../../data/data';
 import Section from '../Layout/Section';
 import Socials from '../Socials';
 
 const About: FC = memo(() => {
-  const {profileImageSrc, description, aboutItems} = aboutData;
+  const {profileImageSrc, aboutItems} = aboutData;
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <Section className="bg-neutral-800" sectionId={SectionId.About}>
-      <div className="grid grid-cols-1 gap-y-4 md:grid-cols-6 group">
+      <div className="group grid grid-cols-1 gap-y-4 md:grid-cols-6">
         {!!profileImageSrc && (
           <div className="col-span-1 flex justify-center md:justify-start">
-            <div 
-              className="relative h-24 w-24 overflow-hidden rounded-xl md:h-32 md:w-32 transition-all duration-300 ease-in-out hover:scale-[2.5] hover:shadow-2xl hover:shadow-orange-500/30 hover:translate-x-2 hover:translate-y-2 hover:origin-top-left"
+            <div
+              className="relative h-24 w-24 overflow-hidden rounded-xl transition-all duration-300 ease-in-out hover:origin-top-left hover:translate-x-2 hover:translate-y-2 hover:scale-[2.5] hover:shadow-2xl hover:shadow-orange-500/30 md:h-32 md:w-32"
               onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
+              onMouseLeave={() => setIsHovered(false)}>
               <Image alt="about-me-image" layout="fill" objectFit="cover" src={profileImageSrc} />
             </div>
           </div>
         )}
-        <div className={`col-span-1 flex flex-col gap-y-6 md:col-span-5 transition-transform duration-300 ease-in-out ${isHovered ? 'translate-x-[200px]' : ''}`}>
+        <div
+          className={`col-span-1 flex flex-col gap-y-6 transition-transform duration-300 ease-in-out md:col-span-5 ${
+            isHovered ? 'translate-x-[200px]' : ''
+          }`}>
           <div className="flex flex-col gap-y-2">
             <h2 className="text-2xl font-bold text-white">Po Peng (Eric)</h2>
             <div className="flex flex-col gap-y-1">
-              <p className="text-base font-semibold text-white sm:text-lg break-words leading-relaxed">
+              <p className="break-words text-base font-semibold leading-relaxed text-white sm:text-lg">
                 MS ECE @UW Seattle | ex-Embedded SWE @MOXA
               </p>
-              <p className="text-base font-semibold text-orange-400 sm:text-lg break-words leading-relaxed">
+              <p className="break-words text-base font-semibold leading-relaxed text-orange-400 sm:text-lg">
                 Seeking 2026 Summer Internship
               </p>
             </div>
@@ -60,15 +61,15 @@ const About: FC = memo(() => {
         <div className="col-span-1 md:col-span-1"></div>
         <div className="col-span-1 flex gap-x-4 md:col-span-5">
           <a
-            className="flex gap-x-2 rounded-full border-2 bg-none py-2 px-4 text-sm font-medium text-white ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base border-orange-500 ring-orange-500"
+            className="flex gap-x-2 rounded-full border-2 border-orange-500 bg-none py-2 px-4 text-sm font-medium text-white ring-orange-500 ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base"
             href="/assets/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            target="_blank">
             Resume
             <DownloadIcon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
           </a>
           <a
-            className="flex gap-x-2 rounded-full border-2 bg-none py-2 px-4 text-sm font-medium text-white ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base border-white ring-white"
+            className="flex gap-x-2 rounded-full border-2 border-white bg-none py-2 px-4 text-sm font-medium text-white ring-white ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base"
             href={`#${SectionId.Contact}`}>
             Contact
           </a>

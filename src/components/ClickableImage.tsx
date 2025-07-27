@@ -1,5 +1,6 @@
-import {FC, memo, useState, useCallback} from 'react';
 import Image from 'next/image';
+import {FC, memo, useCallback,useState} from 'react';
+
 import ImageModal from './ImageModal';
 
 interface ClickableImageProps {
@@ -25,23 +26,11 @@ const ClickableImage: FC<ClickableImageProps> = memo(({src, alt, popupSrc, popup
 
   return (
     <>
-      <Image 
-        src={src} 
-        alt={alt} 
-        width={width}
-        height={height}
-        style={style}
-        onClick={handleClick}
-      />
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={handleClose}
-        imageSrc={popupSrc}
-        alt={popupAlt}
-      />
+      <Image alt={alt} height={height} onClick={handleClick} src={src} style={style} width={width} />
+      <ImageModal alt={popupAlt} imageSrc={popupSrc} isOpen={isModalOpen} onClose={handleClose} />
     </>
   );
 });
 
 ClickableImage.displayName = 'ClickableImage';
-export default ClickableImage; 
+export default ClickableImage;

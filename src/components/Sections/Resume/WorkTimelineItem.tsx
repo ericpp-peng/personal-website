@@ -1,19 +1,14 @@
-import {FC, memo, useState, useCallback, useEffect} from 'react';
 import {BriefcaseIcon} from '@heroicons/react/outline';
 import Image from 'next/image';
+import {FC, memo, useCallback, useEffect,useState} from 'react';
 
 import type {TimelineItem} from '../../../data/dataDef';
 import moxaLogo from '../../../images/MOXA-logo.svg';
-import mgateUseCaseImage from '../../../images/mgate_use_case.jpg';
 import ImageModal from '../../ImageModal';
 
 const WorkTimelineItem: FC<{item: TimelineItem}> = memo(({item}) => {
   const {title, date, location, content} = item;
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleImageClick = useCallback(() => {
-    setIsModalOpen(true);
-  }, []);
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
@@ -24,8 +19,10 @@ const WorkTimelineItem: FC<{item: TimelineItem}> = memo(({item}) => {
     const handleImageClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       // 只有當點擊的是 protocol-gateway-image 或其直接父元素時才觸發
-      if (target.classList.contains('protocol-gateway-image') || 
-          (target.closest('.group') && target.closest('.group')?.querySelector('.protocol-gateway-image'))) {
+      if (
+        target.classList.contains('protocol-gateway-image') ||
+        (target.closest('.group') && target.closest('.group')?.querySelector('.protocol-gateway-image'))
+      ) {
         setIsModalOpen(true);
       }
     };
@@ -35,7 +32,7 @@ const WorkTimelineItem: FC<{item: TimelineItem}> = memo(({item}) => {
       document.removeEventListener('click', handleImageClick);
     };
   }, []);
-  
+
   // 獲取公司地點
   const getCompanyLocation = () => {
     if (title === 'Embedded Software Engineer') {
@@ -44,59 +41,55 @@ const WorkTimelineItem: FC<{item: TimelineItem}> = memo(({item}) => {
     // 可以根據其他職位添加更多地點
     return '';
   };
-  
+
   // 獲取公司 logo
   const getCompanyLogo = () => {
     if (title === 'Embedded Software Engineer') {
-      return (
-        <Image 
-          src={moxaLogo} 
-          alt="MOXA Logo" 
-          width={64} 
-          height={64} 
-          className="h-16 w-16 object-contain"
-        />
-      );
+      return <Image alt="MOXA Logo" className="h-16 w-16 object-contain" height={64} src={moxaLogo} width={64} />;
     }
     return <BriefcaseIcon className="h-16 w-16 text-orange-500" />;
   };
 
   return (
     <>
-      <div className="flex gap-3 pb-8 last:pb-0">
-        {/* Logo 區域 */}
-        <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-          {getCompanyLogo()}
+      <div className="flex flex-col pb-8 last:pb-0">
+        {/* WORK 標題區域 */}
+        <div className="mb-4 flex justify-center md:justify-start">
+          <div className="relative h-max">
+            <h2 className="text-xl font-bold uppercase text-neutral-800">Work</h2>
+            <span className="absolute inset-x-0 -bottom-1 border-b-2 border-orange-400" />
+          </div>
         </div>
-        
-        {/* 內容區域 */}
-        <div className="flex-1" style={{ margin: '0', padding: '0' }}>
-          <div className="flex flex-col" style={{ margin: '0', padding: '0' }}>
-            <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-bold">{title}</h2>
-              <span className="text-xs text-gray-500">{date}</span>
-            </div>
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-base font-semibold text-gray-700">{location}</span>
-              <span className="text-xs text-gray-500">{getCompanyLocation()}</span>
-            </div>
-            <div className="text-gray-700 leading-relaxed" style={{ margin: '0', padding: '0', width: '100%' }}>
-              {content}
+
+        {/* 工作內容區域 */}
+        <div className="flex gap-3">
+          {/* Logo 區域 */}
+          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center">{getCompanyLogo()}</div>
+
+          {/* 內容區域 - 擴展到與右側時間地點信息對齊 */}
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-col">
+              <div className="mb-2 flex items-center">
+                <h2 className="flex-1 text-xl font-bold">{title}</h2>
+              </div>
+              <div className="mb-3 flex items-center">
+                <span className="text-base font-semibold text-gray-700">{location}</span>
+                <span className="ml-2 text-xs text-gray-500">|</span>
+                <span className="ml-2 text-xs text-gray-500">{getCompanyLocation()}</span>
+                <span className="ml-2 text-xs text-gray-500">|</span>
+                <span className="ml-2 text-xs text-gray-500">{date}</span>
+              </div>
+              <div className="pr-0 leading-relaxed text-gray-700">{content}</div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* 模態框 */}
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        imageSrc={mgateUseCaseImage}
-        alt="MGate Use Case"
-      />
+      <ImageModal alt="MGate Use Case" imageSrc="/images/mgate_use_case.jpg" isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 });
 
 WorkTimelineItem.displayName = 'WorkTimelineItem';
-export default WorkTimelineItem; 
+export default WorkTimelineItem;
