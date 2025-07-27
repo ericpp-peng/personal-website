@@ -59,7 +59,7 @@ const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, descrip
       setMobile(true);
     }
   }, []);
-  useDetectOutsideClick(linkRef, () => setShowOverlay(false));
+  useDetectOutsideClick(linkRef as React.RefObject<HTMLElement>, () => setShowOverlay(false));
 
   const handleItemClick = useCallback(
     (event: MouseEvent<HTMLElement>) => {
