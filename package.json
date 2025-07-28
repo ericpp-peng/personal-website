@@ -5,6 +5,7 @@
   "scripts": {
     "build": "yarn compile && yarn next build",
     "build:static": "yarn compile && yarn next build && yarn next export",
+    "build:quick": "yarn next build",
     "clean": "rm -rf build-tsc .next out",
     "compile": "yarn run -T tsc --build --verbose",
     "dev": "yarn compile && yarn next dev",
@@ -15,10 +16,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
+    "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^1.0.6",
     "autoprefixer": "^10.4.2",
     "classnames": "^2.3.1",
+    "emailjs-com": "^3.2.0",
     "next": "^15.4.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -28,6 +31,7 @@
     "@next/eslint-plugin-next": "^12.1.0",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
+    "@types/minimatch": "^6.0.0",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/tailwindcss": "^3.0.9",

@@ -66,20 +66,19 @@ const WorkTimelineItem: FC<{item: TimelineItem}> = memo(({item}) => {
           {/* Logo 區域 */}
           <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center">{getCompanyLogo()}</div>
 
-          {/* 內容區域 - 擴展到與右側時間地點信息對齊 */}
-          <div className="min-w-0 flex-1">
+          {/* 內容區域 */}
+          <div className="flex-1">
             <div className="flex flex-col">
-              <div className="mb-2 flex items-center">
-                <h2 className="flex-1 text-xl font-bold">{title}</h2>
+              <div className="mb-2">
+                <h2 className="text-xl font-bold">{title}</h2>
               </div>
-              <div className="mb-3 flex items-center">
-                <span className="text-base font-semibold text-gray-700">{location}</span>
-                <span className="ml-2 text-xs text-gray-500">|</span>
-                <span className="ml-2 text-xs text-gray-500">{getCompanyLocation()}</span>
-                <span className="ml-2 text-xs text-gray-500">|</span>
-                <span className="ml-2 text-xs text-gray-500">{date}</span>
+              <div className="mb-3">
+                <div className="flex flex-col">
+                  <span className="text-base font-semibold text-gray-700">{location}</span>
+                  <span className="text-gray-400 text-sm">{date} | {getCompanyLocation()}</span>
+                </div>
               </div>
-              <div className="pr-0 leading-relaxed text-gray-700">{content}</div>
+              <div className="leading-relaxed text-gray-700">{content}</div>
             </div>
           </div>
         </div>

@@ -21,7 +21,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "noImplicitAny": false
   },
   "include": [
     "./src/**/*"

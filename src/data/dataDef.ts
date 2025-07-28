@@ -112,7 +112,7 @@ export interface Testimonial {
  */
 export interface ContactSection {
   headerText?: string;
-  description: string;
+  description?: string;
   items: ContactItem[];
 }
 

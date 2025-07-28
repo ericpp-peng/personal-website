@@ -38,6 +38,32 @@ const EducationTimelineItem: FC<{item: TimelineItem; index: number}> = memo(({it
     return <AcademicCapIcon className="h-16 w-16 text-orange-500" />;
   };
 
+  // 獲取學校的標籤
+  const getSchoolTags = () => {
+    if (title === 'University of Washington') {
+      return [
+        { text: 'Computer Vision', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' }
+      ];
+    }
+    if (title === 'National Taiwan University of Science and Technology') {
+      return [
+        { text: 'Mobile Communication', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'Computer Simulation', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'RTOS Implementation', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'Algorithm Design and Application', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' }
+      ];
+    }
+    if (title === 'Chang Gung University') {
+      return [
+        { text: 'Digital Integrated Circuit Design', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'FPGA System Design Lab', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'Digital Signal Processing', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+        { text: 'Data Structure', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' }
+      ];
+    }
+    return [];
+  };
+
   return (
     <div className="flex flex-col pb-8 last:pb-0">
       {/* Education 標題區域 - 只在第一個項目顯示 */}
@@ -59,13 +85,40 @@ const EducationTimelineItem: FC<{item: TimelineItem; index: number}> = memo(({it
         <div className="flex-1">
           <div className="flex flex-col">
             <div className="mb-2 flex items-center justify-between">
-              <h2 className="text-xl font-bold">{title}</h2>
-              <span className="text-xs text-gray-500">{date}</span>
+              <h2 className="text-xl font-bold">
+                {title}
+              </h2>
             </div>
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-base font-semibold text-gray-700">{location}</span>
-              <span className="text-xs text-gray-500">{getSchoolLocation()}</span>
+            <div className="mb-3">
+              <div className="flex flex-col">
+                <span className="text-base font-semibold text-gray-700">{location}</span>
+                {title === 'Chang Gung University' && (
+                  <span className="text-gray-400 text-sm">Concentration in IC Design</span>
+                )}
+                {title === 'National Taiwan University of Science and Technology' && (
+                  <span className="text-gray-400 text-sm">Concentration in Communication System</span>
+                )}
+                {title === 'University of Washington' && (
+                  <span className="text-gray-400 text-sm">Concentration in Embedded System</span>
+                )}
+                <span className="text-gray-400 text-sm">{date} | {getSchoolLocation()}</span>
+              </div>
             </div>
+            
+            {/* 標籤區域 */}
+            <div className="mb-3">
+              <div className="flex flex-wrap gap-2">
+                {getSchoolTags().map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-[#F4EEFC] text-gray-800"
+                  >
+                    {tag.text}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
             <div className="leading-relaxed text-gray-700">{content}</div>
           </div>
         </div>

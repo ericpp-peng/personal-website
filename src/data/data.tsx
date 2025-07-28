@@ -41,7 +41,7 @@ export const SectionId = {
   Resume: 'resume',
   Skills: 'skills',
   Stats: 'stats',
-  Testimonials: 'testimonials',
+  Testimonials: 'snapshots',
 } as const;
 
 export type SectionId = typeof SectionId[keyof typeof SectionId];
@@ -88,70 +88,64 @@ export const aboutData: About = {
  */
 export const skills: SkillGroup[] = [
   {
-    name: 'Spoken languages',
+    name: 'Languages & Scripts',
     skills: [
       {
-        name: 'English',
+        name: 'C',
         level: 10,
       },
       {
-        name: 'French',
-        level: 4,
+        name: 'Shell Script',
+        level: 8,
       },
       {
-        name: 'Spanish',
-        level: 3,
-      },
-    ],
-  },
-  {
-    name: 'Frontend development',
-    skills: [
-      {
-        name: 'React',
-        level: 9,
-      },
-      {
-        name: 'Typescript',
+        name: 'HTML',
         level: 7,
       },
       {
-        name: 'GraphQL',
+        name: 'JavaScript',
         level: 6,
       },
     ],
   },
   {
-    name: 'Backend development',
+    name: 'Technologies & Tools',
     skills: [
       {
-        name: 'Node.js',
-        level: 8,
+        name: 'Linux',
+        level: 10,
       },
       {
-        name: 'Rust',
-        level: 5,
-      },
-      {
-        name: 'Golang',
-        level: 4,
-      },
-    ],
-  },
-  {
-    name: 'Mobile development',
-    skills: [
-      {
-        name: 'React Native',
+        name: 'TCP/IP',
         level: 9,
       },
       {
-        name: 'Flutter',
-        level: 4,
+        name: 'SQLite',
+        level: 8,
       },
       {
-        name: 'Swift',
-        level: 3,
+        name: 'Makefile',
+        level: 8,
+      },
+      {
+        name: 'I2C',
+        level: 9,
+      },
+      {
+        name: 'UART',
+        level: 9,
+      },
+      {
+        name: 'GitLab (CI/CD pipelines)',
+        level: 7,
+      },
+      {
+        name: 'Docker',
+        level: 6,
+      },
+      {
+        name: 'Jira',
+        level: 7,
       },
     ],
   },
@@ -177,19 +171,106 @@ export const education: TimelineItem[] = [
     date: 'June 2027',
     location: 'M.S. in Electrical and Computer Engineering',
     title: 'University of Washington',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    content: <p></p>,
   },
   {
     date: 'June 2020',
     location: 'M.S. in Electrical Engineering',
     title: 'National Taiwan University of Science and Technology',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    content: (
+      <div>
+        <p style={{marginBottom: '0'}}>
+          <strong style={{color: '#F97316'}}>Knowledge Discovery in Database (KDD) Cup Contest</strong>
+        </p>
+        <p style={{marginBottom: '12px', color: '#F97316', fontSize: '14px'}}>
+          Result: weighted F1-score of 0.6884 on the test set, close to the first-place team's score of approximately 0.7
+        </p>
+        <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
+          <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
+            <span
+              style={{
+                color: '#F97316',
+                fontSize: '6px',
+                position: 'absolute',
+                left: '0',
+                top: '6px',
+                fontWeight: 'bold',
+              }}>
+              ●
+            </span>
+            <span style={{fontSize: '14px'}}>
+              <span style={{color: '#F97316', fontWeight: 'bold'}}>Developed</span> machine learning workflows in Python, including preprocessing, feature engineering, and model training, to predict Baidu Map users' preferred transportation modes using 500,000+ data points
+            </span>
+          </li>
+        </ul>
+      </div>
+    ),
   },
   {
     date: 'June 2018',
     location: 'B.S. in Electrical Engineering',
     title: 'Chang Gung University',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    content: (
+      <div>
+        <p style={{marginBottom: '0'}}>
+          <strong style={{color: '#F97316'}}>Intelligent Curtain System</strong>
+          <span style={{color: '#F97316', fontSize: '14px'}}> – Undergraduate Capstone Project</span>
+        </p>
+        <p style={{marginBottom: '12px', color: '#F97316', fontSize: '14px'}}>
+          Award: first place in the final project exhibition
+        </p>
+        <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
+          <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
+            <span
+              style={{
+                color: '#F97316',
+                fontSize: '6px',
+                position: 'absolute',
+                left: '0',
+                top: '6px',
+                fontWeight: 'bold',
+              }}>
+              ●
+            </span>
+            <span style={{fontSize: '14px'}}>
+              <span style={{color: '#F97316', fontWeight: 'bold'}}>Created</span> an intelligent curtain system using SmartServer and Zigbee sensors with Power Line Communication, enabling automatic adjustment based on illumination levels
+            </span>
+          </li>
+          <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
+            <span
+              style={{
+                color: '#F97316',
+                fontSize: '6px',
+                position: 'absolute',
+                left: '0',
+                top: '6px',
+                fontWeight: 'bold',
+              }}>
+              ●
+            </span>
+            <span style={{fontSize: '14px'}}>
+              <span style={{color: '#F97316', fontWeight: 'bold'}}>Designed</span> and <span style={{color: '#F97316', fontWeight: 'bold'}}>implemented</span> a curtain control PCB using D flip-flops, BJTs and RLC components, completing the entire process from circuit design to soldering to ensure seamless system integration
+            </span>
+          </li>
+          <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
+            <span
+              style={{
+                color: '#F97316',
+                fontSize: '6px',
+                position: 'absolute',
+                left: '0',
+                top: '6px',
+                fontWeight: 'bold',
+              }}>
+              ●
+            </span>
+            <span style={{fontSize: '14px'}}>
+              <span style={{color: '#F97316', fontWeight: 'bold'}}>Programmed</span> Zigbee firmware to ensure accurate storage of temperature and brightness data in the SmartServer
+            </span>
+          </li>
+        </ul>
+      </div>
+    ),
   },
 ];
 
@@ -200,7 +281,7 @@ export const experience: TimelineItem[] = [
     title: 'Embedded Software Engineer',
     content: (
       <div style={{margin: '0', padding: '0', width: '100%'}}>
-        <div style={{marginLeft: '-76px', width: '100%'}}>
+        <div style={{width: '100%'}}>
           <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
             <div style={{flex: '0 0 auto'}}>
               <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%'}}>
@@ -211,19 +292,21 @@ export const experience: TimelineItem[] = [
               <div className="group relative">
                 <Image
                   alt="Protocol Gateway"
-                  className="protocol-gateway-image transition-transform duration-300 group-hover:scale-110"
-                  height={75}
+                  className="protocol-gateway-image transition-transform duration-300 group-hover:scale-[3] group-hover:bg-white"
+                  height={37}
                   src="/images/protocol_gateway.png"
                   style={{
                     borderRadius: '8px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                     cursor: 'pointer',
                   }}
-                  width={100}
+                  width={50}
                 />
-                                  <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="select-none text-lg font-bold text-white text-center">One of Use Cases</span>
+                <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-gray-800 bg-opacity-50 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-[2.9]">
+                  <div className="flex flex-col items-center">
+                    <span className="select-none text-[5px] font-bold text-white whitespace-nowrap">One of Use Cases</span>
                   </div>
+                </div>
               </div>
             </div>
           </div>
@@ -266,25 +349,49 @@ export const experience: TimelineItem[] = [
                         padding: 8px 12px;
                         border-radius: 4px;
                         font-size: 12px;
-                        max-width: 350px;
+                        max-width: 550px;
                         z-index: 10000;
                         white-space: normal;
                         word-wrap: break-word;
                         box-shadow: 0 2px 8px rgba(0,0,0,0.3);
                         line-height: 1.4;
-                        pointer-events: none;
+                        user-select: text;
+                        pointer-events: auto;
                       `;
                       tooltip.id = 'custom-tooltip-' + Date.now();
-                      document.body.appendChild(tooltip);
+                      tooltip.setAttribute('data-hovering', 'false');
                       
                       // 計算位置
                       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
                       tooltip.style.left = rect.left + 'px';
-                      tooltip.style.top = (rect.top - 70) + 'px';
+                      tooltip.style.top = (rect.top - 50) + 'px';
+                      
+                      // 添加tooltip的mouse事件
+                      tooltip.addEventListener('mouseenter', () => {
+                        tooltip.setAttribute('data-hovering', 'true');
+                      });
+                      
+                      tooltip.addEventListener('mouseleave', () => {
+                        tooltip.setAttribute('data-hovering', 'false');
+                        setTimeout(() => {
+                          if (tooltip.getAttribute('data-hovering') === 'false') {
+                            tooltip.remove();
+                          }
+                        }, 1000);
+                      });
+                      
+                      document.body.appendChild(tooltip);
                     }}
                     onMouseLeave={() => {
-                      const tooltips = document.querySelectorAll('[id^="custom-tooltip"]');
-                      tooltips.forEach(tooltip => tooltip.remove());
+                      // 1秒後移除 tooltip，但檢查是否正在hover
+                      setTimeout(() => {
+                        const tooltips = document.querySelectorAll('[id^="custom-tooltip"]');
+                        tooltips.forEach(tooltip => {
+                          if (tooltip.getAttribute('data-hovering') !== 'true') {
+                            tooltip.remove();
+                          }
+                        });
+                      }, 1000);
                     }}
                   >
                     IEC 60870-5-101/104
@@ -384,7 +491,7 @@ export const experience: TimelineItem[] = [
             </li>
           </ul>
         </div>
-        <div style={{marginLeft: '-76px', width: '100%'}}>
+        <div style={{width: '100%'}}>
           <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
             <div style={{flex: '0 0 auto'}}>
               <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%'}}>
@@ -394,13 +501,13 @@ export const experience: TimelineItem[] = [
             <div style={{flex: '0 0 auto'}}>
               <Image
                 alt="Media Converter"
-                height={75}
+                height={37}
                 src="/images/media_converter.png"
                 style={{
                   borderRadius: '8px',
                   boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                 }}
-                width={100}
+                width={50}
               />
             </div>
           </div>
@@ -497,28 +604,27 @@ export const testimonial: TestimonialSection = {
  */
 
 export const contact: ContactSection = {
-  headerText: 'Get in touch.',
-  description: 'Here is a good spot for a message to your readers to let them know how best to reach out to you.',
+  headerText: 'Coffee chats, cool ideas, or just tech talk — drop me a line!',
   items: [
     {
       type: ContactType.Email,
-      text: 'reachout@timbaker.me',
-      href: 'mailto:reachout@timbaker.me',
+      text: 'ericpp@uw.edu',
+      href: 'mailto:ericpp.peng@gmail.com',
     },
     {
       type: ContactType.Location,
-      text: 'Victoria BC, Canada',
-      href: 'https://www.google.ca/maps/place/Victoria,+BC/@48.4262362,-123.376775,14z',
+      text: 'Seattle, WA, USA',
+      href: 'https://www.google.com/maps/place/Seattle,+WA/@47.6062095,-122.3320708,12z',
     },
     {
-      type: ContactType.Instagram,
-      text: '@tbakerx',
-      href: 'https://www.instagram.com/tbakerx/',
+      type: ContactType.LinkedIn,
+      text: 'Po (彭柏 Eric) Peng',
+      href: 'https://www.linkedin.com/in/po-peng/',
     },
     {
       type: ContactType.Github,
-      text: 'tbakerx',
-      href: 'https://github.com/tbakerx',
+      text: 'ericpp-peng',
+      href: 'https://github.com/ericpp-peng',
     },
   ],
 };

@@ -1,25 +1,51 @@
 import classNames from 'classnames';
-import {FC, memo, UIEventHandler, useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {FC, memo, useEffect, useMemo, useState} from 'react';
 
 import {isApple, isMobile} from '../../config';
 import {SectionId, testimonial} from '../../data/data';
-import type {Testimonial} from '../../data/dataDef';
-import useInterval from '../../hooks/useInterval';
-import useWindow from '../../hooks/useWindow';
-import QuoteIcon from '../Icon/QuoteIcon';
 import Section from '../Layout/Section';
 
+// 生活照片和影片數據
+const lifestyleMedia = [
+  {
+    id: 1,
+    src: '/videos/lifestyle/20240402_diving.MP4',
+    alt: 'Diving adventure',
+    title: 'Diving adventure',
+    description: 'Exploring underwater world',
+    type: 'video',
+  },
+  {
+    id: 2,
+    src: '/videos/lifestyle/20250711_badminton.mp4',
+    alt: 'Badminton game',
+    title: 'Badminton game',
+    description: 'Playing badminton with friends',
+    type: 'video',
+  },
+  {
+    id: 3,
+    src: '/videos/lifestyle/20160524_piano.mp4?v=' + Date.now(),
+    alt: 'Piano performance',
+    title: 'Piano performance',
+    description: 'Playing piano',
+    type: 'video',
+  },
+  {
+    id: 4,
+    src: '/videos/lifestyle/20250225_snow.mp4?v=' + Date.now(),
+    alt: 'Snow adventure',
+    title: 'Snow adventure',
+    description: 'Enjoying the snow',
+    type: 'video',
+  },
+];
+
 const Testimonials: FC = memo(() => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [scrollValue, setScrollValue] = useState(0);
+  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
   const [parallaxEnabled, setParallaxEnabled] = useState(false);
 
-  const itemWidth = useRef(0);
-  const scrollContainer = useRef<HTMLDivElement>(null);
-
-  const {width} = useWindow();
-
-  const {imageSrc, testimonials} = testimonial;
+  const {imageSrc} = testimonial;
 
   const resolveSrc = useMemo(() => {
     if (!imageSrc) return undefined;
@@ -31,44 +57,6 @@ const Testimonials: FC = memo(() => {
     setParallaxEnabled(!(isMobile && isApple));
   }, []);
 
-  useEffect(() => {
-    itemWidth.current = scrollContainer.current ? scrollContainer.current.offsetWidth : 0;
-  }, [width]);
-
-  useEffect(() => {
-    if (scrollContainer.current) {
-      const newIndex = Math.round(scrollContainer.current.scrollLeft / itemWidth.current);
-      setActiveIndex(newIndex);
-    }
-  }, [itemWidth, scrollValue]);
-
-  const setTestimonial = useCallback(
-    (index: number) => () => {
-      if (scrollContainer !== null && scrollContainer.current !== null) {
-        scrollContainer.current.scrollLeft = itemWidth.current * index;
-      }
-    },
-    [],
-  );
-  const next = useCallback(() => {
-    if (activeIndex + 1 === testimonials.length) {
-      setTestimonial(0)();
-    } else {
-      setTestimonial(activeIndex + 1)();
-    }
-  }, [activeIndex, setTestimonial, testimonials.length]);
-
-  const handleScroll = useCallback<UIEventHandler<HTMLDivElement>>(event => {
-    setScrollValue(event.currentTarget.scrollLeft);
-  }, []);
-
-  useInterval(next, 10000);
-
-  // If no testimonials, don't render the section
-  if (!testimonials.length) {
-    return null;
-  }
-
   return (
     <Section noPadding sectionId={SectionId.Testimonials}>
       <div
@@ -78,62 +66,86 @@ const Testimonials: FC = memo(() => {
           {'bg-neutral-700': !imageSrc},
         )}
         style={imageSrc ? {backgroundImage: `url(${resolveSrc}`} : undefined}>
-        <div className="z-10 w-full max-w-screen-md px-4 lg:px-0">
-          <div className="flex flex-col items-center gap-y-6 rounded-xl bg-gray-800/60 p-6 shadow-lg">
-            <div
-              className="no-scrollbar flex w-full touch-pan-x snap-x snap-mandatory gap-x-6 overflow-x-auto scroll-smooth"
-              onScroll={handleScroll}
-              ref={scrollContainer}>
-              {testimonials.map((testimonial, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <Testimonial isActive={isActive} key={`${testimonial.name}-${index}`} testimonial={testimonial} />
-                );
-              })}
+        <div className="z-10 w-full max-w-screen-xl px-4 lg:px-0">
+          <div className="flex flex-col items-center gap-y-8 rounded-xl bg-gray-800/60 p-6 shadow-lg">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-white mb-4">Snapshots</h2>
+              <p className="text-neutral-300 text-lg">Capturing memories and experiences</p>
             </div>
-            <div className="flex gap-x-4">
-              {[...Array(testimonials.length)].map((_, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <button
-                    className={classNames(
-                      'h-3 w-3 rounded-full bg-gray-300 transition-all duration-500 sm:h-4 sm:w-4',
-                      isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-60',
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+              {lifestyleMedia.map((media) => (
+                <div
+                  key={media.id}
+                  className="group relative overflow-hidden rounded-lg bg-neutral-700 cursor-pointer transition-transform duration-300 hover:scale-105"
+                  onClick={() => setSelectedPhoto(media.id)}>
+                  <div className="aspect-square relative">
+                    {media.type === 'image' ? (
+                      <img
+                        src={media.src}
+                        alt={media.alt}
+                        className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                      />
+                    ) : (
+                      <video
+                        src={media.src}
+                        className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                        loop
+                        muted
+                        autoPlay
+                      />
                     )}
-                    disabled={isActive}
-                    key={`select-button-${index}`}
-                    onClick={setTestimonial(index)}></button>
-                );
-              })}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-semibold text-xs mb-1">{media.title}</h3>
+                    <p className="text-xs text-neutral-200">{media.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* 照片詳情彈窗 */}
+        {selectedPhoto && (
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+            <div className="relative max-w-2xl max-h-[90vh] overflow-hidden rounded-lg">
+              <button
+                onClick={() => setSelectedPhoto(null)}
+                className="absolute top-4 right-4 z-10 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70 transition-colors">
+                ✕
+              </button>
+              {lifestyleMedia.find(m => m.id === selectedPhoto)?.type === 'image' ? (
+                <img
+                  src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
+                  alt={lifestyleMedia.find(m => m.id === selectedPhoto)?.alt}
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <video
+                  src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
+                  className="w-full h-full object-contain"
+                  loop
+                  muted
+                  autoPlay
+                />
+              )}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <h3 className="text-white font-semibold text-lg">
+                  {lifestyleMedia.find(m => m.id === selectedPhoto)?.title}
+                </h3>
+                <p className="text-neutral-200 text-sm">
+                  {lifestyleMedia.find(m => m.id === selectedPhoto)?.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </Section>
   );
 });
 
-const Testimonial: FC<{testimonial: Testimonial; isActive: boolean}> = memo(
-  ({testimonial: {text, name, image}, isActive}) => (
-    <div
-      className={classNames(
-        'flex w-full shrink-0 snap-start snap-always flex-col items-start gap-y-4 p-2 transition-opacity duration-1000 sm:flex-row sm:gap-x-6',
-        isActive ? 'opacity-100' : 'opacity-0',
-      )}>
-      {image ? (
-        <div className="relative h-14 w-14 shrink-0 sm:h-16 sm:w-16">
-          <QuoteIcon className="absolute -top-2 -left-2 h-4 w-4 stroke-black text-white" />
-          <img className="h-full w-full rounded-full" src={image} />
-        </div>
-      ) : (
-        <QuoteIcon className="h-5 w-5 shrink-0 text-white sm:h-8 sm:w-8" />
-      )}
-      <div className="flex flex-col gap-y-4">
-        <p className="prose prose-sm font-medium italic text-white sm:prose-base">{text}</p>
-        <p className="text-xs italic text-white sm:text-sm md:text-base lg:text-lg">-- {name}</p>
-      </div>
-    </div>
-  ),
-);
-
+Testimonials.displayName = 'Testimonials';
 export default Testimonials;
