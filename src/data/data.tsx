@@ -212,21 +212,24 @@ export const experience: TimelineItem[] = [
                 <Image
                   alt="Protocol Gateway"
                   className="protocol-gateway-image transition-transform duration-300 group-hover:scale-110"
-                  height={150}
+                  height={75}
                   src="/images/protocol_gateway.png"
                   style={{
                     borderRadius: '8px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                     cursor: 'pointer',
                   }}
-                  width={200}
+                  width={100}
                 />
-                <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="select-none text-lg font-bold text-white">Use Case</span>
-                </div>
+                                  <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="select-none text-lg font-bold text-white text-center">One of Use Cases</span>
+                  </div>
               </div>
             </div>
           </div>
+          <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%', fontSize: '14px', color: '#6B7280', marginTop: '8px', marginBottom: '16px'}}>
+            Product line generating USD 3M/year with +10% YoY growth (2021–2024)
+          </p>
           <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%'}}>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
               <span
@@ -240,10 +243,91 @@ export const experience: TimelineItem[] = [
                 }}>
                 ●
               </span>
+                              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                  <span style={{color: '#F97316', fontWeight: 'bold'}}>Led</span> modularization of{' '}
+                  <span 
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      borderBottom: '1px dotted #666',
+                      position: 'relative'
+                    }}
+                    onMouseEnter={(e) => {
+                      // 移除所有已存在的 tooltip
+                      const existingTooltips = document.querySelectorAll('[id^="custom-tooltip"]');
+                      existingTooltips.forEach(tooltip => tooltip.remove());
+                      
+                      const tooltip = document.createElement('div');
+                      tooltip.textContent = 'A communication protocol used in power and industrial automation systems to transmit data between control centers and remote devices';
+                      tooltip.style.cssText = `
+                        position: fixed;
+                        background: #333;
+                        color: white;
+                        padding: 8px 12px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        max-width: 350px;
+                        z-index: 10000;
+                        white-space: normal;
+                        word-wrap: break-word;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                        line-height: 1.4;
+                        pointer-events: none;
+                      `;
+                      tooltip.id = 'custom-tooltip-' + Date.now();
+                      document.body.appendChild(tooltip);
+                      
+                      // 計算位置
+                      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                      tooltip.style.left = rect.left + 'px';
+                      tooltip.style.top = (rect.top - 70) + 'px';
+                    }}
+                    onMouseLeave={() => {
+                      const tooltips = document.querySelectorAll('[id^="custom-tooltip"]');
+                      tooltips.forEach(tooltip => tooltip.remove());
+                    }}
+                  >
+                    IEC 60870-5-101/104
+                  </span>
+                  {' '}protocol stack for{' '}
+                  <a 
+                    href="https://www.moxa.com/en/products/industrial-edge-connectivity/protocol-gateways/modbus-tcp-gateways/mgate-5192-series"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      textDecoration: 'underline'
+                    }}
+                  >
+                    MGate 5192
+                  </a>
+                  {' '}to improve maintainability and scalability, cutting integration time for new products by over 50%
+                </span>
+            </li>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
               <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Pioneered modularization of the IEC 60870-5-101/104 communication protocol for MGate 5192, achieving its
-                first modularized implementation and accelerating feature integration and scalability across future
-                products
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Built</span> a customized full-stack solution for serial configuration and troubleshooting on{' '}
+                <a 
+                  href="https://www.moxa.com/en/products/industrial-edge-connectivity/protocol-gateways/modbus-tcp-gateways/mgate-5216-series"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'underline'
+                  }}
+                >
+                  MGate 5216
+                </a>
+                , enabling customer onboarding and reducing debugging time between R&D and clients by over 90%
               </span>
             </li>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
@@ -259,8 +343,26 @@ export const experience: TimelineItem[] = [
                 ●
               </span>
               <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Customized a full-stack solution for the proprietary serial settings and troubleshooting pages of MGate
-                5216, successfully addressing client-specific needs and driving product adoption
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Improved</span> the RESTful library for the MGate 5000 series using an IPC-based design, 
+                reducing API maintenance and development time by 10%
+              </span>
+            </li>
+            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
+              <span
+                style={{
+                  color: '#F97316',
+                  fontSize: '6px',
+                  position: 'absolute',
+                  left: '0',
+                  top: '8px',
+                  fontWeight: 'bold',
+                }}>
+                ●
+              </span>
+                            <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Developed</span> unit tests and valgrind scripts for MGate 5000 series software modules integrated with 
+                GitLab CI, enhancing system stability and enabling early detection of memory issues 
+                with 90% test coverage
               </span>
             </li>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
@@ -276,42 +378,8 @@ export const experience: TimelineItem[] = [
                 ●
               </span>
               <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Improved a RESTful library for the MGate 5000 series by adopting an inter-process communication-based
-                architecture, reducing maintenance and development efforts for REST API-related modules
-              </span>
-            </li>
-            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
-              <span
-                style={{
-                  color: '#F97316',
-                  fontSize: '6px',
-                  position: 'absolute',
-                  left: '0',
-                  top: '8px',
-                  fontWeight: 'bold',
-                }}>
-                ●
-              </span>
-              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Developed unit tests and Valgrind scripts for MGate 5000 series software modules integrated with GitLab
-                CI, enhancing system stability and supporting a product line generating USD 3M/year (+10% YoY over 3
-                years)
-              </span>
-            </li>
-            <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
-              <span
-                style={{
-                  color: '#F97316',
-                  fontSize: '6px',
-                  position: 'absolute',
-                  left: '0',
-                  top: '8px',
-                  fontWeight: 'bold',
-                }}>
-                ●
-              </span>
-              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Resolved SD card backup issues by analyzing Linux kernel code and confirming a solution in a new version
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Co-developed</span> the SD card backup module with the Linux kernel team and independently 
+                resolved issues through kernel source code analysis
               </span>
             </li>
           </ul>
@@ -320,19 +388,19 @@ export const experience: TimelineItem[] = [
           <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
             <div style={{flex: '0 0 auto'}}>
               <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%'}}>
-                <strong>Media Converters (MCU-based):</strong>
+                <strong>Media Converters (MCU-based)</strong>
               </p>
             </div>
             <div style={{flex: '0 0 auto'}}>
               <Image
                 alt="Media Converter"
-                height={150}
+                height={75}
                 src="/images/media_converter.png"
                 style={{
                   borderRadius: '8px',
                   boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                 }}
-                width={200}
+                width={100}
               />
             </div>
           </div>
@@ -349,8 +417,20 @@ export const experience: TimelineItem[] = [
                 }}>
                 ●
               </span>
-              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Led the software development of IMC-P21A-G2 (Ethernet-to-fiber) from project initiation to market launch
+                            <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Led</span> the software development of{' '}
+                <a 
+                  href="https://www.moxa.com/en/products/industrial-network-infrastructure/ethernet-media-converters/ethernet-to-fiber-media-converters/imc-p21a-g2-series"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'underline'
+                  }}
+                >
+                  IMC-P21A-G2
+                </a>
+                {' '}(Ethernet-to-fiber) from project initiation 
+                to market launch, collaborating with the product manager, hardware engineers, and the SQA team
               </span>
             </li>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
@@ -365,8 +445,20 @@ export const experience: TimelineItem[] = [
                 }}>
                 ●
               </span>
-              <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
-                Resolved sample point and communication issues for Japanese clients using ICF-1171I (CAN-to-fiber)
+                            <span style={{textAlign: 'justify', display: 'block', width: '100%'}}>
+                <span style={{color: '#F97316', fontWeight: 'bold'}}>Resolved</span> communication issues involving sample point and RAM configuration for Japanese 
+                clients using the{' '}
+                <a 
+                  href="https://www.moxa.com/en/products/industrial-edge-connectivity/serial-converters/fieldbus-to-fiber-converters/icf-1171i-series"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'underline'
+                  }}
+                >
+                  ICF-1171I
+                </a>
+                {' '}(CAN-to-fiber)
               </span>
             </li>
           </ul>
