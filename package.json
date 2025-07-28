@@ -12,7 +12,7 @@
     "lint": "yarn run -T prettier --write './src/**/*.{js,jsx,json,ts,tsx}' && eslint './src/**/*.{js,jsx,ts,tsx}' --fix --max-warnings=0",
     "start": "yarn next start",
     "sitemap": "yarn next-sitemap",
-    "vercel-build": "yarn compile && yarn next build"
+    "vercel-build": "yarn run -T tsc --noEmit && yarn next build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
@@ -31,7 +31,6 @@
     "@next/eslint-plugin-next": "^12.1.0",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
-    "@types/minimatch": "^6.0.0",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/tailwindcss": "^3.0.9",

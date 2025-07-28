@@ -22,7 +22,8 @@
     "jsx": "preserve",
     "incremental": true,
     "jsxImportSource": "react",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": []
   },
   "include": [
     "./src/**/*"
