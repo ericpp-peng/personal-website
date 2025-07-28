@@ -156,10 +156,16 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Project title',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    imageUrl: 'https://source.unsplash.com/random/',
+    title: '《FireWall》 System Development',
+    description: 'Participated in the 2020 NTUEE Makeathon. Our team developed a fire warning system using a sensor network, aiming to improve evacuation efficiency and rescue operations in fire emergencies.',
+    url: '/videos/20201011_makentu.mp4',
+    imageUrl: '/videos/20201011_makentu.mp4',
+  },
+  {
+    title: '2019 Hsinchu × Mei-Chu Hackathon',
+    description: 'We aimed to develop a mobile app designed for workers. The app would automatically collect data on their actual working hours and mental well-being, helping to raise awareness of labor conditions.',
+    url: '/videos/20191026_HackMeiChu.mp4',
+    imageUrl: '/videos/20191026_HackMeiChu.mp4',
   },
 ];
 
@@ -175,7 +181,7 @@ export const education: TimelineItem[] = [
   },
   {
     date: 'June 2020',
-    location: 'M.S. in Electrical Engineering',
+    location: 'M.S. in Electrical Engineering | GPA: 3.92 / 4.3',
     title: 'National Taiwan University of Science and Technology',
     content: (
       <div>
@@ -203,12 +209,34 @@ export const education: TimelineItem[] = [
             </span>
           </li>
         </ul>
+        <p style={{marginBottom: '0', marginTop: '16px'}}>
+          <strong style={{color: '#F97316'}}>Analysis of Call Admission Control Schemes for Secondary Users in CRN</strong>
+          <span style={{color: '#F97316', fontSize: '14px'}}> – M.S. Thesis</span>
+        </p>
+        <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
+          <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
+            <span
+              style={{
+                color: '#F97316',
+                fontSize: '6px',
+                position: 'absolute',
+                left: '0',
+                top: '6px',
+                fontWeight: 'bold',
+              }}>
+              ●
+            </span>
+            <span style={{fontSize: '14px'}}>
+              <span style={{color: '#F97316', fontWeight: 'bold'}}>Proposed</span> a novel access mechanism for cognitive radio networks (CRN), combining spectrum leasing, channel aggregation and hand-offs to improve spectrum utilization, achieving lower user delay and higher throughput
+            </span>
+          </li>
+        </ul>
       </div>
     ),
   },
   {
     date: 'June 2018',
-    location: 'B.S. in Electrical Engineering',
+    location: 'B.S. in Electrical Engineering | GPA: 3.7 / 4.0',
     title: 'Chang Gung University',
     content: (
       <div>
@@ -217,7 +245,7 @@ export const education: TimelineItem[] = [
           <span style={{color: '#F97316', fontSize: '14px'}}> – Undergraduate Capstone Project</span>
         </p>
         <p style={{marginBottom: '12px', color: '#F97316', fontSize: '14px'}}>
-          Award: first place in the final project exhibition
+          Award: first place in the final project exhibition in the communications field
         </p>
         <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
           <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>

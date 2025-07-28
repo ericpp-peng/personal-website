@@ -1,40 +1,80 @@
-import {ExternalLinkIcon} from '@heroicons/react/outline';
-import classNames from 'classnames';
-import {FC, memo, MouseEvent, useCallback, useEffect, useRef, useState} from 'react';
+import {FC, memo} from 'react';
 
-import {isMobile} from '../../config';
 import {portfolioItems, SectionId} from '../../data/data';
-import {PortfolioItem} from '../../data/dataDef';
-import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import Section from '../Layout/Section';
 
 const Portfolio: FC = memo(() => {
-  // Array of test items, replace this with 'portfolioItems' from data/data.ts
-  const testPortfolioItems: PortfolioItem[] = [
-    ...Array(10).fill({
-      ...portfolioItems[0],
-    }),
-  ].map((item, idx) => {
-    const {imageUrl, ...rest} = item;
-    // Simply a seed value for unsplash random image
-    return {imageUrl: `${imageUrl}${idx}`, ...rest};
-  });
+  // Use actual portfolio items instead of test items
+  const actualPortfolioItems = portfolioItems;
+
+  // Helper function to check if a URL is a video file
+  const isVideoFile = (url: string) => {
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi'];
+    return videoExtensions.some(ext => url.toLowerCase().includes(ext));
+  };
 
   return (
     <Section className="bg-neutral-800" sectionId={SectionId.Portfolio}>
       <div className="flex flex-col gap-y-8">
-        <h2 className="self-center text-xl font-bold text-white">Check out some of my work</h2>
-        <div className=" w-full columns-2 md:columns-3 lg:columns-4">
-          {testPortfolioItems.map((item, index) => {
-            const {title, imageUrl} = item;
+        <h2 className="self-center text-xl font-bold text-white">Take a look at some of my projects and collaborations</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+          {actualPortfolioItems.map((item, index) => {
+            const {title, imageUrl, url, description} = item;
+            const isVideo = isVideoFile(url);
+            
             return (
-              <div className="pb-6" key={`${title}-${index}`}>
-                <div
-                  className={classNames(
-                    'relative h-max w-full overflow-hidden rounded-lg shadow-lg shadow-black/30 lg:shadow-xl',
-                  )}>
-                  <img alt={title} src={imageUrl} />
-                  <ItemOverlay item={item} />
+              <div
+                key={`${title}-${index}`}
+                className="group relative overflow-hidden rounded-lg bg-neutral-700 cursor-pointer transition-transform duration-300 hover:scale-105">
+                <div className="aspect-square relative">
+                  {isVideo ? (
+                    <video
+                      src={url}
+                      className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                      muted
+                      autoPlay
+                      loop
+                    />
+                  ) : (
+                    <img 
+                      alt={title} 
+                      src={imageUrl}
+                      className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-2 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="font-semibold text-xs mb-1">{title}</h3>
+                  <p className="text-xs text-neutral-200">{description}</p>
+                  {title === '《FireWall》 System Development' && (
+                    <a 
+                      href="https://prezi.com/view/j38fXpu4TcMWmGLJofw4/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center mt-2 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      View Presentation
+                    </a>
+                  )}
+                  {title === '2019 Hsinchu × Mei-Chu Hackathon' && (
+                    <a 
+                      href="https://prezi.com/view/mM7hWajvIQFWeE3K25pY/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center mt-2 text-xs text-orange-400 hover:text-orange-300 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      View Presentation
+                    </a>
+                  )}
                 </div>
               </div>
             );
@@ -47,44 +87,3 @@ const Portfolio: FC = memo(() => {
 
 Portfolio.displayName = 'Portfolio';
 export default Portfolio;
-
-const ItemOverlay: FC<{item: PortfolioItem}> = memo(({item: {url, title, description}}) => {
-  const [mobile, setMobile] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
-  const linkRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    // Avoid hydration styling errors by setting mobile in useEffect
-    if (isMobile) {
-      setMobile(true);
-    }
-  }, []);
-  useDetectOutsideClick(linkRef as React.RefObject<HTMLElement>, () => setShowOverlay(false));
-
-  const handleItemClick = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      if (mobile && !showOverlay) {
-        event.preventDefault();
-        setShowOverlay(!showOverlay);
-      }
-    },
-    [mobile, showOverlay],
-  );
-
-  return (
-    <a
-      className={classNames(
-        'absolute inset-0 flex h-full w-full flex-col gap-y-4 overflow-y-scroll bg-gray-900 p-4 transition-all duration-300',
-        {'opacity-0 hover:opacity-80': !mobile},
-        showOverlay ? 'opacity-80' : 'opacity-0',
-      )}
-      href={url}
-      onClick={handleItemClick}
-      ref={linkRef}
-      target="_blank">
-      <h2 className="text-center font-bold text-white opacity-100">{title}</h2>
-      <p className="text-xs text-white opacity-100 sm:text-sm">{description}</p>
-      <ExternalLinkIcon className="absolute bottom-2 right-2 h-4 w-4 text-white" />
-    </a>
-  );
-});
