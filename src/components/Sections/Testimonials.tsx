@@ -12,7 +12,7 @@ const lifestyleMedia = [
     src: '/videos/lifestyle/20240402_diving.MP4',
     alt: 'Diving adventure',
     title: 'Diving adventure',
-    description: 'Exploring underwater world',
+    description: 'Balicasag Island, Philippines',
     type: 'video',
   },
   {
@@ -28,15 +28,15 @@ const lifestyleMedia = [
     src: '/videos/lifestyle/20160524_piano.mp4?v=' + Date.now(),
     alt: 'Piano performance',
     title: 'Piano performance',
-    description: 'Playing piano',
+    description: 'Fantaisie-Impromptu, Op. 66 (Chopin)',
     type: 'video',
   },
   {
     id: 4,
     src: '/videos/lifestyle/20250225_snow.mp4?v=' + Date.now(),
     alt: 'Snow adventure',
-    title: 'Snow adventure',
-    description: 'Enjoying the snow',
+    title: 'Snow boarding adventure',
+    description: 'Echigo-Yuzawa, Japan',
     type: 'video',
   },
 ];
@@ -109,35 +109,35 @@ const Testimonials: FC = memo(() => {
 
         {/* 照片詳情彈窗 */}
         {selectedPhoto && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <div className="relative max-w-2xl max-h-[90vh] overflow-hidden rounded-lg">
+          <div 
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedPhoto(null)}
+          >
+            <div 
+              className="relative max-w-2xl w-full h-full max-h-[90vh] overflow-hidden rounded-lg flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setSelectedPhoto(null)}
                 className="absolute top-4 right-4 z-10 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70 transition-colors">
                 ✕
               </button>
-              {lifestyleMedia.find(m => m.id === selectedPhoto)?.type === 'image' ? (
-                <img
-                  src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
-                  alt={lifestyleMedia.find(m => m.id === selectedPhoto)?.alt}
-                  className="w-full h-full object-contain"
-                />
-              ) : (
-                <video
-                  src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
-                  className="w-full h-full object-contain"
-                  loop
-                  muted
-                  autoPlay
-                />
-              )}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                <h3 className="text-white font-semibold text-lg">
-                  {lifestyleMedia.find(m => m.id === selectedPhoto)?.title}
-                </h3>
-                <p className="text-neutral-200 text-sm">
-                  {lifestyleMedia.find(m => m.id === selectedPhoto)?.description}
-                </p>
+              <div className="flex-1 flex items-center justify-center min-h-0">
+                {lifestyleMedia.find(m => m.id === selectedPhoto)?.type === 'image' ? (
+                  <img
+                    src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
+                    alt={lifestyleMedia.find(m => m.id === selectedPhoto)?.alt}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <video
+                    src={lifestyleMedia.find(m => m.id === selectedPhoto)?.src}
+                    className="w-full h-full object-contain"
+                    loop
+                    controls
+                    autoPlay
+                  />
+                )}
               </div>
             </div>
           </div>

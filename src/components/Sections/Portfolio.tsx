@@ -255,41 +255,36 @@ const Portfolio: FC = memo(() => {
 
       {/* 放大彈窗 */}
       {selectedItem && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full h-full flex flex-col items-center justify-center">
+        <div 
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedItem(null)}
+        >
+          <div 
+            className="relative max-w-2xl w-full h-full max-h-[90vh] overflow-hidden rounded-lg flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setSelectedItem(null)}
               className="absolute top-4 right-4 z-10 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70 transition-colors">
               ✕
             </button>
-            <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="flex-1 flex items-center justify-center min-h-0">
               {isVideoFile(selectedItem.url) ? (
                 <video
                   src={selectedItem.url}
-                  className="w-auto h-auto max-w-full max-h-full object-contain"
+                  className="w-full h-full object-contain"
                   loop
-                  muted
-                  autoPlay
                   controls
+                  autoPlay
                 />
               ) : (
                 <img
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
-                  className="w-auto h-auto max-w-full max-h-full object-contain"
+                  className="w-full h-full object-contain"
                 />
               )}
             </div>
-            {selectedItem.title !== 'FPGA Project - 2018' && selectedItem.title !== 'Intelligent Curtain System - Undergraduate Capstone' && selectedItem.title !== '《FireWall》 System Development' && selectedItem.title !== '2019 Hsinchu × Mei-Chu Hackathon' && (
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                <h3 className="text-white font-semibold text-lg">
-                  {selectedItem.title}
-                </h3>
-                <p className="text-neutral-200 text-sm">
-                  {selectedItem.description}
-                </p>
-              </div>
-            )}
           </div>
         </div>
       )}

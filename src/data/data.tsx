@@ -159,15 +159,15 @@ export const portfolioItems: PortfolioItem[] = [
   {
     title: 'Intelligent Curtain System - Undergraduate Capstone',
     description: 'Undergraduate capstone project developing an intelligent curtain system. This project demonstrates practical application of embedded systems and IoT technologies for home automation.',
-    url: '/videos/20170525_undergraducate_capstone_curtain.mp4',
-    imageUrl: '/videos/20170525_undergraducate_capstone_curtain.mp4',
+    url: '/videos/lifestyle/20170525_undergraducate_capstone_curtain.mp4',
+    imageUrl: '/videos/lifestyle/20170525_undergraducate_capstone_curtain.mp4',
     category: 'classroom',
   },
   {
     title: 'FPGA Project - 2018',
     description: 'Implemented a 2D LED dodging game using Verilog on an FPGA Development Board',
-    url: '/videos/20180118_fpga.mp4?v=' + Date.now(),
-    imageUrl: '/videos/20180118_fpga.mp4?v=' + Date.now(),
+    url: '/videos/lifestyle/20180118_fpga.mp4?v=' + Date.now(),
+    imageUrl: '/videos/lifestyle/20180118_fpga.mp4?v=' + Date.now(),
     category: 'classroom',
   },
           {
@@ -180,8 +180,8 @@ export const portfolioItems: PortfolioItem[] = [
   {
     title: '《FireWall》 System Development',
     description: 'We aim to build a fire alert system using a sensor network to enable more efficient evacuation and rescue operations during a fire.',
-    url: '/videos/20201011_makentu.mp4',
-    imageUrl: '/videos/20201011_makentu.mp4',
+    url: '/videos/lifestyle/20201011_makentu.mp4',
+    imageUrl: '/videos/lifestyle/20201011_makentu.mp4',
     category: 'hackathon',
   },
 ];
