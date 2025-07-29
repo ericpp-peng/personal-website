@@ -26,8 +26,8 @@ export const homePageMeta: HomepageMeta = {
   twitterCardType: 'summary_large',
   twitterSite: `@timbakerx`,
   twitterCreator: `@timbakerx`,
-  twitterDomain: `reactresume.com`,
-  twitterUrl: `https://reactresume.com`,
+  twitterDomain: `po-peng-personal-website.vercel.app`,
+  twitterUrl: `https://po-peng-personal-website.vercel.app`,
 };
 
 /**
