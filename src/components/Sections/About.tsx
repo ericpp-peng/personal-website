@@ -15,7 +15,15 @@ const About: FC = memo(() => {
         {!!profileImageSrc && (
           <div className="mb-8 flex justify-center">
             <div className="relative h-72 w-72 overflow-hidden rounded-xl md:h-96 md:w-96">
-              <Image alt="about-me-image" layout="fill" objectFit="cover" src={profileImageSrc} />
+              <Image 
+                alt="about-me-image" 
+                layout="fill" 
+                objectFit="cover" 
+                src={profileImageSrc} 
+                priority
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+              />
             </div>
           </div>
         )}

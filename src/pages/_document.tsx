@@ -22,6 +22,8 @@ export default function Document() {
         />
         <link rel="icon" type="image/png" href="/favicon-small.png" />
         <link rel="shortcut icon" type="image/png" href="/favicon-small.png" />
+        {/* Preload profile image for highest priority loading */}
+        <link rel="preload" as="image" href="/images/profilepic.jpg" />
       </Head>
       <body className="bg-black">
         <Main />
