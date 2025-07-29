@@ -81,6 +81,7 @@ export interface PortfolioItem {
   description: string;
   url: string;
   imageUrl: string;
+  category: 'classroom' | 'hackathon';
 }
 
 /**

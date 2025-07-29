@@ -46,6 +46,16 @@ const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) 
                   </button>
                 </div>
                 <div className="mt-4">
+                  {imageSrc.includes('converter_use_case.svg') && (
+                    <div className="mb-4 text-center">
+                      <h3 className="text-2xl font-bold text-orange-500">Subway Station</h3>
+                    </div>
+                  )}
+                  {imageSrc.includes('mgate_use_case.jpg') && (
+                    <div className="mb-4 text-center">
+                      <h3 className="text-2xl font-bold text-orange-500">Electric Power Industry</h3>
+                    </div>
+                  )}
                   <Image
                     alt={alt}
                     className="h-auto w-full rounded-lg"
@@ -54,6 +64,19 @@ const ImageModal: FC<ImageModalProps> = memo(({isOpen, onClose, imageSrc, alt}) 
                     style={imageStyle}
                     width={800}
                   />
+                  {imageSrc.includes('mgate_use_case.jpg') && (
+                    <div className="mt-4 text-center text-xs text-gray-500">
+                      <a 
+                        href="https://ipc2u.com/news/product-news/mgate-5119-t-iec-61850-gateway-for-power-engineering/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-gray-700 underline"
+                      >
+                        Source: ipc2u.com
+                      </a>
+                    </div>
+                  )}
+
                 </div>
               </Dialog.Panel>
             </Transition.Child>

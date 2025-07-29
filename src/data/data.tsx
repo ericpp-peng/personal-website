@@ -38,7 +38,8 @@ export const SectionId = {
   About: 'about',
   Contact: 'contact',
   Portfolio: 'portfolio',
-  Resume: 'resume',
+  Work: 'work',
+  Education: 'education',
   Skills: 'skills',
   Stats: 'stats',
   Testimonials: 'snapshots',
@@ -156,16 +157,32 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: '《FireWall》 System Development',
-    description: 'Participated in the 2020 NTUEE Makeathon. Our team developed a fire warning system using a sensor network, aiming to improve evacuation efficiency and rescue operations in fire emergencies.',
-    url: '/videos/20201011_makentu.mp4',
-    imageUrl: '/videos/20201011_makentu.mp4',
+    title: 'Intelligent Curtain System - Undergraduate Capstone',
+    description: 'Undergraduate capstone project developing an intelligent curtain system. This project demonstrates practical application of embedded systems and IoT technologies for home automation.',
+    url: '/videos/20170525_undergraducate_capstone_curtain.mp4',
+    imageUrl: '/videos/20170525_undergraducate_capstone_curtain.mp4',
+    category: 'classroom',
   },
   {
-    title: '2019 Hsinchu × Mei-Chu Hackathon',
-    description: 'We aimed to develop a mobile app designed for workers. The app would automatically collect data on their actual working hours and mental well-being, helping to raise awareness of labor conditions.',
-    url: '/videos/20191026_HackMeiChu.mp4',
-    imageUrl: '/videos/20191026_HackMeiChu.mp4',
+    title: 'FPGA Project - 2018',
+    description: 'Implemented a 2D LED dodging game using Verilog on an FPGA Development Board',
+    url: '/videos/20180118_fpga.mp4?v=' + Date.now(),
+    imageUrl: '/videos/20180118_fpga.mp4?v=' + Date.now(),
+    category: 'classroom',
+  },
+          {
+          title: '2019 Hsinchu × Mei-Chu Hackathon',
+          description: 'We aimed to develop a mobile app designed for workers. The app would automatically collect data on their actual working hours and mental well-being, helping to raise awareness of labor conditions.',
+          url: '/videos/20191026_HackMeiChu.mp4?v=' + Date.now(),
+          imageUrl: '/videos/20191026_HackMeiChu.mp4?v=' + Date.now(),
+          category: 'hackathon',
+        },
+  {
+    title: '《FireWall》 System Development',
+    description: 'We aim to build a fire alert system using a sensor network to enable more efficient evacuation and rescue operations during a fire.',
+    url: '/videos/20201011_makentu.mp4',
+    imageUrl: '/videos/20201011_makentu.mp4',
+    category: 'hackathon',
   },
 ];
 
@@ -186,9 +203,9 @@ export const education: TimelineItem[] = [
     content: (
       <div>
         <p style={{marginBottom: '0'}}>
-          <strong style={{color: '#F97316'}}>Knowledge Discovery in Database (KDD) Cup Contest</strong>
+          <strong style={{color: '#374151'}}>Knowledge Discovery in Database (KDD) Cup Contest</strong>
         </p>
-        <p style={{marginBottom: '12px', color: '#F97316', fontSize: '14px'}}>
+        <p style={{marginBottom: '12px', color: '#374151', fontSize: '14px'}}>
           Result: weighted F1-score of 0.6884 on the test set, close to the first-place team's score of approximately 0.7
         </p>
         <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
@@ -210,8 +227,8 @@ export const education: TimelineItem[] = [
           </li>
         </ul>
         <p style={{marginBottom: '0', marginTop: '16px'}}>
-          <strong style={{color: '#F97316'}}>Analysis of Call Admission Control Schemes for Secondary Users in CRN</strong>
-          <span style={{color: '#F97316', fontSize: '14px'}}> – M.S. Thesis</span>
+          <strong style={{color: '#374151'}}>Analysis of Call Admission Control Schemes for Secondary Users in CRN</strong>
+          <span style={{color: '#374151', fontSize: '14px'}}> – M.S. Thesis</span>
         </p>
         <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0'}}>
           <li style={{marginBottom: '8px', paddingLeft: '16px', position: 'relative'}}>
@@ -309,6 +326,18 @@ export const experience: TimelineItem[] = [
     title: 'Embedded Software Engineer',
     content: (
       <div style={{margin: '0', padding: '0', width: '100%'}}>
+        {/* Technical Skills Section */}
+        <div style={{marginBottom: '20px', padding: '16px', backgroundColor: '#1F2937', borderRadius: '8px', border: '1px solid #374151'}}>
+          <div style={{marginBottom: '12px'}}>
+            <span style={{color: '#F97316', fontWeight: 'bold', fontSize: '14px'}}>Languages:</span>
+            <span style={{color: '#D1D5DB', fontSize: '14px', marginLeft: '8px'}}>C, Shell Scripts, HTML, JavaScript</span>
+          </div>
+          <div>
+            <span style={{color: '#F97316', fontWeight: 'bold', fontSize: '14px'}}>Technologies & Tools:</span>
+            <span style={{color: '#D1D5DB', fontSize: '14px', marginLeft: '8px'}}>Linux, TCP/IP, SQLite, Makefile, I2C, UART, GitLab(CI/CD pipelines), Docker, Jira</span>
+          </div>
+        </div>
+        
         <div style={{width: '100%'}}>
           <div style={{display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '16px'}}>
             <div style={{flex: '0 0 auto'}}>
@@ -339,7 +368,7 @@ export const experience: TimelineItem[] = [
             </div>
           </div>
           <p style={{margin: '0', padding: '0', textAlign: 'left', width: '100%', fontSize: '14px', color: '#6B7280', marginTop: '8px', marginBottom: '16px'}}>
-            Product line generating USD 3M/year with +10% YoY growth (2021–2024)
+          Achieved USD 3M/year revenue with +10% YoY growth (2021 - 2024)
           </p>
           <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%'}}>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
@@ -358,9 +387,7 @@ export const experience: TimelineItem[] = [
                   <span style={{color: '#F97316', fontWeight: 'bold'}}>Led</span> modularization of{' '}
                   <span 
                     style={{
-                      textDecoration: 'underline',
                       cursor: 'pointer',
-                      borderBottom: '1px dotted #666',
                       position: 'relative'
                     }}
                     onMouseEnter={(e) => {
@@ -405,13 +432,13 @@ export const experience: TimelineItem[] = [
                           if (tooltip.getAttribute('data-hovering') === 'false') {
                             tooltip.remove();
                           }
-                        }, 1000);
+                        }, 100);
                       });
                       
                       document.body.appendChild(tooltip);
                     }}
                     onMouseLeave={() => {
-                      // 1秒後移除 tooltip，但檢查是否正在hover
+                      // 0.1秒後移除 tooltip，但檢查是否正在hover
                       setTimeout(() => {
                         const tooltips = document.querySelectorAll('[id^="custom-tooltip"]');
                         tooltips.forEach(tooltip => {
@@ -419,7 +446,7 @@ export const experience: TimelineItem[] = [
                             tooltip.remove();
                           }
                         });
-                      }, 1000);
+                      }, 100);
                     }}
                   >
                     IEC 60870-5-101/104
@@ -462,7 +489,7 @@ export const experience: TimelineItem[] = [
                 >
                   MGate 5216
                 </a>
-                , enabling customer onboarding and reducing debugging time between R&D and clients by over 90%
+                , enabling customer onboarding and reducing debugging time between software R&D and clients by over 90%
               </span>
             </li>
             <li style={{marginBottom: '16px', paddingLeft: '24px', position: 'relative'}}>
@@ -527,16 +554,25 @@ export const experience: TimelineItem[] = [
               </p>
             </div>
             <div style={{flex: '0 0 auto'}}>
-              <Image
-                alt="Media Converter"
-                height={37}
-                src="/images/media_converter.png"
-                style={{
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                }}
-                width={50}
-              />
+              <div className="group relative">
+                <Image
+                  alt="Media Converter"
+                  className="media-converter-image transition-transform duration-300 group-hover:scale-[3] group-hover:bg-white"
+                  height={37}
+                  src="/images/media_converter.png"
+                  style={{
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                    cursor: 'pointer',
+                  }}
+                  width={50}
+                />
+                <div className="absolute inset-0 flex cursor-pointer select-none items-center justify-center rounded-lg bg-gray-800 bg-opacity-50 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-[2.9]">
+                  <div className="flex flex-col items-center">
+                    <span className="select-none text-[5px] font-bold text-white whitespace-nowrap">One of Use Cases</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <ul style={{listStyleType: 'none', paddingLeft: '0', margin: '0', width: '100%'}}>
