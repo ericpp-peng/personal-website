@@ -1,8 +1,87 @@
-import {FC, memo, useEffect, useState} from 'react';
+import {FC, memo, useEffect, useState, useRef, useCallback} from 'react';
 
 import {portfolioItems, SectionId} from '../../data/data';
 import type {PortfolioItem} from '../../data/dataDef';
 import Section from '../Layout/Section';
+
+// 延遲載入影片組件
+const LazyVideo: FC<{
+  src: string;
+  className?: string;
+  onLoad?: () => void;
+}> = memo(({src, className, onLoad}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer 來檢測元素是否在視窗中
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '50px', // 提前 50px 開始載入
+        threshold: 0.1,
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  // 當影片載入完成時
+  const handleVideoLoad = useCallback(() => {
+    setIsLoaded(true);
+    onLoad?.();
+  }, [onLoad]);
+
+  return (
+    <div ref={containerRef} className={className}>
+      {/* 預覽圖 - 在影片載入前顯示 */}
+      {!isLoaded && (
+        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="text-4xl mb-2">🎬</div>
+            <div className="text-xs opacity-80">Loading...</div>
+          </div>
+        </div>
+      )}
+      
+      {/* 影片 - 只在進入視窗時載入，但不自動播放 */}
+      {isInView && (
+        <video
+          ref={videoRef}
+          src={src}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          muted
+          playsInline
+          onLoadedData={handleVideoLoad}
+          onError={() => {
+            console.warn(`Failed to load video: ${src}`);
+          }}
+        />
+      )}
+    </div>
+  );
+});
+
+LazyVideo.displayName = 'LazyVideo';
 
 const Portfolio: FC = memo(() => {
   // Use actual portfolio items instead of test items
@@ -37,7 +116,10 @@ const Portfolio: FC = memo(() => {
     };
   }, []);
 
-
+  // 處理影片載入完成
+  const handleVideoLoad = useCallback((mediaId: string) => {
+    console.log(`Portfolio video ${mediaId} loaded successfully`);
+  }, []);
 
   // Helper function to render portfolio items
   const renderPortfolioItems = (items: typeof actualPortfolioItems) => {
@@ -96,12 +178,10 @@ const Portfolio: FC = memo(() => {
                       </svg>
                     </div>
                   </div>
-                  <video
+                  <LazyVideo
                     src={url}
-                    className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
-                    muted
-                    loop
-                    playsInline
+                    className="w-full h-full transition-opacity duration-300 group-hover:opacity-80"
+                    onLoad={() => handleVideoLoad(title)}
                   />
                 </div>
               ) : (
