@@ -211,35 +211,40 @@ const Portfolio: FC = memo(() => {
                 </button>
               </div>
             )}
-            {title === '《FireWall》 System Development' && (
+          </div>
+          
+          {/* Presentation 連結 - 移到卡片外部，更明顯的位置 */}
+          {title === '《FireWall》 System Development' && (
+            <div className="mt-2 text-center">
               <a 
                 href="https://prezi.com/view/j38fXpu4TcMWmGLJofw4/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center mt-2 text-xs text-orange-400 hover:text-orange-300 transition-colors"
-                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center text-xs text-orange-400 hover:text-orange-300 transition-colors"
               >
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
                 View Presentation
               </a>
-            )}
-            {title === '2019 Hsinchu × Mei-Chu Hackathon' && (
+            </div>
+          )}
+          {title === '2019 Hsinchu × Mei-Chu Hackathon' && (
+            <div className="mt-2 text-center">
               <a 
                 href="https://prezi.com/view/mM7hWajvIQFWeE3K25pY/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center mt-2 text-xs text-orange-400 hover:text-orange-300 transition-colors"
-                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center text-xs text-orange-400 hover:text-orange-300 transition-colors"
               >
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
                 View Presentation
               </a>
-            )}
-          </div>
+            </div>
+          )}
+          
                   {/* Intelligent Curtain System 的標題和 View Education Details 按鈕 */}
         {title === 'Intelligent Curtain System - Undergraduate Capstone' && (
           <div className="mt-2 text-center">
