@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {FC, memo, useEffect, useMemo, useState} from 'react';
+import {FC, memo, useEffect, useMemo, useState, useRef, useCallback} from 'react';
 
 import {isApple, isMobile} from '../../config';
 import {SectionId, testimonial} from '../../data/data';
@@ -25,7 +25,7 @@ const lifestyleMedia = [
   },
   {
     id: 3,
-    src: '/videos/lifestyle/20160524_piano.mp4?v=' + Date.now(),
+    src: '/videos/lifestyle/20160524_piano.mp4',
     alt: 'Piano performance',
     title: 'Piano performance',
     description: 'Fantaisie-Impromptu, Op. 66 (Chopin)',
@@ -33,13 +33,103 @@ const lifestyleMedia = [
   },
   {
     id: 4,
-    src: '/videos/lifestyle/20250225_snow.mp4?v=' + Date.now(),
+    src: '/videos/lifestyle/20250225_snow.mp4',
     alt: 'Snow adventure',
     title: 'Snow boarding adventure',
     description: 'Echigo-Yuzawa, Japan',
     type: 'video',
   },
 ];
+
+// 影片組件，支援延遲載入
+const LazyVideo: FC<{
+  src: string;
+  className?: string;
+  onLoad?: () => void;
+}> = memo(({src, className, onLoad}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer 來檢測元素是否在視窗中
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '50px', // 提前 50px 開始載入
+        threshold: 0.1,
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  // 當影片載入完成時
+  const handleVideoLoad = useCallback(() => {
+    setIsLoaded(true);
+    onLoad?.();
+  }, [onLoad]);
+
+  // 當影片進入視窗時，開始播放
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.warn('Failed to autoplay video:', error);
+      });
+    }
+  }, [isInView]);
+
+  return (
+    <div ref={containerRef} className={className}>
+      {/* 預覽圖 - 在影片載入前顯示 */}
+      {!isLoaded && (
+        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="text-4xl mb-2">🎬</div>
+            <div className="text-xs opacity-80">Loading...</div>
+          </div>
+        </div>
+      )}
+      
+      {/* 影片 - 只在進入視窗時載入和播放 */}
+      {isInView && (
+        <video
+          ref={videoRef}
+          src={src}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          loop
+          muted
+          playsInline
+          onLoadedData={handleVideoLoad}
+          onError={() => {
+            // 如果影片載入失敗，保持預覽圖顯示
+            console.warn(`Failed to load video: ${src}`);
+          }}
+        />
+      )}
+    </div>
+  );
+});
+
+LazyVideo.displayName = 'LazyVideo';
 
 const Testimonials: FC = memo(() => {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -55,6 +145,11 @@ const Testimonials: FC = memo(() => {
   // Mobile iOS doesn't allow background-fixed elements
   useEffect(() => {
     setParallaxEnabled(!(isMobile && isApple));
+  }, []);
+
+  // 處理影片載入完成
+  const handleVideoLoad = useCallback((mediaId: number) => {
+    console.log(`Video ${mediaId} loaded successfully`);
   }, []);
 
   return (
@@ -87,12 +182,10 @@ const Testimonials: FC = memo(() => {
                         className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
                       />
                     ) : (
-                      <video
+                      <LazyVideo
                         src={media.src}
-                        className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
-                        loop
-                        muted
-                        autoPlay
+                        className="w-full h-full transition-opacity duration-300 group-hover:opacity-80"
+                        onLoad={() => handleVideoLoad(media.id)}
                       />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
