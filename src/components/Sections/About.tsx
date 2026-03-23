@@ -32,10 +32,13 @@ const About: FC = memo(() => {
             <h2 className="text-2xl font-bold text-white">Po Peng (Eric)</h2>
             <div className="flex flex-col items-center gap-y-1">
               <p className="break-words text-center text-base font-semibold leading-relaxed text-white sm:text-lg">
-                MS ECE @UW Seattle | ex-Embedded SWE @MOXA
+                Incoming 2026 Summer Embedded Software Intern at <span className="text-blue-500">Qualcomm</span>
+              </p>
+              <p className="break-words text-center text-base font-semibold leading-relaxed text-white sm:text-lg">
+                MS ECE at UW Seattle | ex-Embedded SWE at Moxa
               </p>
               <p className="break-words text-center text-base font-semibold leading-relaxed text-orange-400 sm:text-lg">
-                Seeking 2026 Summer Internship
+                Open to 2027 full-time opportunities
               </p>
             </div>
           </div>

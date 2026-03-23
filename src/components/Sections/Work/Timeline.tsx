@@ -50,20 +50,26 @@ const Timeline: FC<{items: TimelineItem[]}> = memo(({items}) => {
       <div className="space-y-6">
         {items.map((item, index) => {
           const {title, date, location, content} = item;
+          const isMoxa = location.toLowerCase().includes('moxa');
+          const isQualcomm = location.toLowerCase().includes('qualcomm');
 
           // 獲取公司地點
           const getCompanyLocation = () => {
-            if (title === 'Embedded Software Engineer') {
+            if (isMoxa) {
               return 'Taipei, Taiwan';
             }
-            // 可以根據其他職位添加更多地點
+            if (isQualcomm) {
+              return 'San Diego, CA';
+            }
             return '';
           };
 
-          // 獲取公司 logo
           const getCompanyLogo = () => {
-            if (title === 'Embedded Software Engineer') {
+            if (isMoxa) {
               return <Image alt="MOXA Logo" className="h-16 w-16 object-contain" height={64} src={moxaLogo} width={64} />;
+            }
+            if (isQualcomm) {
+              return <Image alt="Qualcomm Logo" className="h-16 w-16 object-contain" height={64} src="/images/qualcomm.svg" width={64} />;
             }
             return <BriefcaseIcon className="h-16 w-16 text-orange-500" />;
           };

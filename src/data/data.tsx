@@ -56,7 +56,7 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        <strong>MS ECE @UW Seattle</strong> | <strong>ex-Embedded SWE @MOXA</strong> | Seeking 2026 Summer Internship
+        <strong>MS ECE at UW Seattle</strong> | <strong>ex-Embedded SWE at Moxa</strong> | Incoming 2026 Summer Embedded Software Intern at <strong className="text-blue-500">Qualcomm</strong>
       </p>
     </>
   ),
@@ -80,7 +80,7 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: '/images/profilepic.jpg',
-  description: `MS ECE @UW Seattle | ex-Embedded SWE @MOXA | Seeking 2026 Summer Internship`,
+  description: `Incoming 2026 Summer Embedded Software Intern at Qualcomm | MS ECE at UW Seattle | ex-Embedded SWE at Moxa`,
   aboutItems: [],
 };
 
@@ -192,7 +192,7 @@ export const portfolioItems: PortfolioItem[] = [
 export const education: TimelineItem[] = [
   {
     date: 'June 2027',
-    location: 'M.S. in Electrical and Computer Engineering',
+    location: 'M.S. in Electrical and Computer Engineering | GPA: 3.75 / 4.0',
     title: 'University of Washington',
     content: <p></p>,
   },
@@ -321,8 +321,27 @@ export const education: TimelineItem[] = [
 
 export const experience: TimelineItem[] = [
   {
+    date: 'Jun 2026 - Sep 2026',
+    location: 'Qualcomm · Internship',
+    title: 'Embedded Software Engineer',
+    content: (
+      <div style={{margin: '0', padding: '0', width: '100%'}}>
+        <div style={{marginBottom: '20px', padding: '16px', backgroundColor: '#1F2937', borderRadius: '8px', border: '1px solid #374151'}}>
+          <div style={{marginBottom: '12px'}}>
+            <span style={{color: '#F97316', fontWeight: 'bold', fontSize: '14px'}}>Status:</span>
+            <span style={{color: '#D1D5DB', fontSize: '14px', marginLeft: '8px'}}>Incoming internship</span>
+          </div>
+          <div>
+            <span style={{color: '#F97316', fontWeight: 'bold', fontSize: '14px'}}>Focus Areas:</span>
+            <span style={{color: '#D1D5DB', fontSize: '14px', marginLeft: '8px'}}>Embedded software, firmware development, and system-level debugging</span>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
     date: 'June 2021 - October 2024',
-    location: 'Moxa',
+    location: 'Moxa · Full-time',
     title: 'Embedded Software Engineer',
     content: (
       <div style={{margin: '0', padding: '0', width: '100%'}}>
