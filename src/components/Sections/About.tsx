@@ -62,7 +62,7 @@ const About: FC = memo(() => {
         <div className="mt-8 flex gap-x-4">
           <a
             className="flex gap-x-2 rounded-full border-2 border-orange-500 bg-none py-2 px-4 text-sm font-medium text-white ring-orange-500 ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base"
-            href="https://drive.google.com/file/d/1j7J1V_Zyni07ayYNE8XWHbU-adYE3XEa/view?usp=sharing"
+            href="https://drive.google.com/file/d/1zsb_pGQGMrj_uBWThKAIpDqY7sorhUAK/view?usp=sharing"
             rel="noopener noreferrer"
             target="_blank">
             Resume
