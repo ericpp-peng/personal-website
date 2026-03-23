@@ -79,6 +79,8 @@ const Timeline: FC<{items: TimelineItem[]}> = memo(({items}) => {
         const getSchoolTags = () => {
           if (title === 'University of Washington') {
             return [
+              { text: 'High-Performance Computer Architecture', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
+              { text: 'The Hardware/Software Interface', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' },
               { text: 'Computer Vision', style: 'bg-blue-100 border border-blue-300 text-gray-800 shadow-sm' }
             ];
           }

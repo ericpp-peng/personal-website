@@ -1,49 +1,67 @@
-# React JS Resume Website Template
+# Personal Website
 
-![ReactJS Resume Website Template](resume-screenshot.jpg?raw=true 'ReactJS Resume Website Template')
+A personal resume/portfolio site built with Next.js and TypeScript, using a section-based single-page architecture driven primarily by a single content data file.
 
-### View a [live demo here.](https://react-resume-template.herokuapp.com/)
+## Documentation
 
-#### If this template has helped you and you'd like to support my work, feel free to [♥️ Sponsor](https://github.com/sponsors/tbakerx) the project
+- Design Doc: [docs/design-doc.md](docs/design-doc.md)
 
-### 🎉 Version 2 is here! New features:
-1. Completely rebuilt with React and full typescript support
-2. Built on the [Next.js](https://nextjs.org/) framework for easy server side rendering/static generation, image optimization, api routes, and deployment
-3. Styled entirely with [TailwindCss](https://tailwindcss.com/)
-4. Re-organized data population file for customizing site.
-5. Significant improvement/modernization of all site sections
- 
-**Looking for the old version? You can find it [here.](https://github.com/tbakerx/react-resume-template/releases/tag/v1.0.0)**
+## Tech Stack
 
-## Description
+- Next.js
+- React + TypeScript
+- Tailwind CSS + SCSS
 
-This is a React based personal resume website template. Built with typescript on the Next.js framework, styled with Tailwind css, and populated with data from a single file, you can easily create, customize and host your own personal website in minutes. Even better, the site if fully mobile-optimized and server-side rendered to ensure fast loading and a clean UI on any device. Read on to learn how to make it your own.
+## Quick Start
 
-## Make it Your Own!
+### 1) Prerequisites
 
-### 1. Make sure you have what you need
+- Node.js (latest LTS recommended)
+- Yarn
 
-To build this website, you will need to have the latest stable versions of Node and Yarn downloaded and installed on your machine. If you don't already have them, you can get Node [here,](https://nodejs.org/en/download/) and Yarn [here.](https://yarnpkg.com/getting-started/install)
+### 2) Install dependencies
 
-### 2. Fork and download this repo (and star if you like!)
+```bash
+yarn install
+```
 
-Next, find the `Fork` button in the top right of this page. This will allow you to make your own copy, for more info on forking repo's see [here.](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) After this, download to your development machine using the green `Code` button at the top of the repo page.
+### 3) Start development server
 
-### 3. Install dependencies and run
+```bash
+yarn dev
+```
 
-Once you have your own copy of this repo forked and downloaded, open the folder in your favorite terminal and run `yarn install` to install dependencies. Following this, run `yarn dev` to run the project. In your terminal you should be given the url of the running instance (usually http://localhost:3000 unless you have something else running).
+The default URL is usually `http://localhost:3000`.
 
-### 4. Customize the data to make it your own
+## Common Commands
 
-All of the data for the site is driven via a file at `/src/data/data.tsx`. This is where you'll find the existing content, and updating the values here will be reflected on the site. If you have the site running as described above, you should see these changes reflected on save. The data types for all of these items are given in the same folder in the `dataDef.ts` file. Example images can be found at `src/images/` and are imported in the data file. To change, simply update these images using the same name and location, or add new images and update the imports. 
+- `yarn dev`: local development
+- `yarn build`: TypeScript compile + Next.js build
+- `yarn start`: start production server
+- `yarn lint`: format and run ESLint
+- `yarn sitemap`: generate sitemap
 
-### 5. Hook up contact form
-Due to the variety of options available for contact form providers, I've hooked up the contact form only so far as handling inputs and state. Form submission and the actual sending of the email is open to your own implementation. My personal recommendation for email provider is [Sendgrid.](https://sendgrid.com/)
+## Project Structure (Key Paths)
 
-### 6. Make any other changes you like
+- `src/pages`: page and route entry points
+- `src/components/Sections`: homepage section components
+- `src/components/Layout`: shared layout wrappers
+- `src/data/data.tsx`: primary content data
+- `src/data/dataDef.ts`: content type definitions
 
-Of course, all of the code is there and nothing is hidden from you so if you would like to make any other styling/data changes, feel free!
+## Content Maintenance
 
-### 7. Deploy to Vercel and enjoy your new Resume Website
+Most content updates should be made in `src/data/data.tsx` (Hero, About, Resume, Portfolio, Contact, etc.).
 
-Deploying your new site to Vercel is simple, and can be done by following their guide [here.](https://vercel.com/guides/deploying-nextjs-with-vercel) When you're all done and the build succeeds, you should be given a url for your live site, go there and you'll see your new personal resume website! Congratulations!
+- Text and links: edit fields directly in the data model
+- Images: place assets in `public/images` or `src/images`, then reference them in the data file
+
+## Contact Form Notes
+
+The contact form currently includes frontend field state and submit handling entry points, but does not yet integrate a real email delivery service.
+
+You can add an API route in `src/pages/api` and connect the form submit handler to a provider such as SendGrid or Resend.
+
+## Deployment
+
+Deployment to Vercel is recommended, but any platform with Next.js support can be used.

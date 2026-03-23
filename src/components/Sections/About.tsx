@@ -32,10 +32,13 @@ const About: FC = memo(() => {
             <h2 className="text-2xl font-bold text-white">Po Peng (Eric)</h2>
             <div className="flex flex-col items-center gap-y-1">
               <p className="break-words text-center text-base font-semibold leading-relaxed text-white sm:text-lg">
-                MS ECE @UW Seattle | ex-Embedded SWE @MOXA
+                Incoming 2026 Summer Embedded Software Intern at <span className="text-blue-500">Qualcomm</span>
+              </p>
+              <p className="break-words text-center text-base font-semibold leading-relaxed text-white sm:text-lg">
+                MS ECE at UW Seattle | ex-Embedded SWE at Moxa
               </p>
               <p className="break-words text-center text-base font-semibold leading-relaxed text-orange-400 sm:text-lg">
-                Seeking 2026 Summer Internship
+                Open to 2027 full-time opportunities
               </p>
             </div>
           </div>
@@ -59,7 +62,7 @@ const About: FC = memo(() => {
         <div className="mt-8 flex gap-x-4">
           <a
             className="flex gap-x-2 rounded-full border-2 border-orange-500 bg-none py-2 px-4 text-sm font-medium text-white ring-orange-500 ring-offset-gray-700/80 hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-base"
-            href="https://drive.google.com/file/d/1j7J1V_Zyni07ayYNE8XWHbU-adYE3XEa/view?usp=sharing"
+            href="https://drive.google.com/file/d/1zsb_pGQGMrj_uBWThKAIpDqY7sorhUAK/view?usp=sharing"
             rel="noopener noreferrer"
             target="_blank">
             Resume
