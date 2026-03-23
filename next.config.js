@@ -15,8 +15,7 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   // eslint-disable-next-line no-undef
-  strictMode: true,
-  swcMinify: false,
+  reactStrictMode: true,
   trailingSlash: false,
   images: {
     unoptimized: true,
