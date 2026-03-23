@@ -16,6 +16,7 @@ module.exports = {
   },
   // eslint-disable-next-line no-undef
   reactStrictMode: true,
+  output: 'export',
   trailingSlash: false,
   images: {
     unoptimized: true,
